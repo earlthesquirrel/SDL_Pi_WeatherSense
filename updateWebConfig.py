@@ -1,7 +1,5 @@
-# configure Web updates
-
-
-
+# Configuration info for Citizen Science 
+# sites we contribute to.
 
 
 ###############
@@ -13,24 +11,24 @@
 RADLATITUDE=47.65156879612473
 RADLONGITUDE=-117.18482279369067 
 
-RADLOCATIONNAME= "SwitchDoc Labs, Spokane Valley, WA, USA"
+RADLOCATIONNAME= "Earl's House, Johns Creek, GA, USA"
 RADHEIGHTINMETERS = 615
+
+
 #radmon.org
 
-
-
 RADMONIPADDRESS="radmon.org"
-RADMONUSER="switchdoclabs"
-RADMONPASSWORD="picadillo304"
+RADMONUSER=""
+RADMONPASSWORD=""
 
 
-#safecase
+#safecast
 
-SAFECASTAPI=""
+SAFECASTAPI="svyWsuaXwyb_tzY76Y_t"
 
 
 #GMCMap.com
 
 GMCMAPIPADDRESS="www.GMCMap.com"
-GMCMAPUSERACCOUNTID=""
-GMCMAPGEIGERCOUNTERID="yourgiegercounterID"
+GMCMAPUSERACCOUNTID="06921"
+GMCMAPGEIGERCOUNTERID="51946339382"

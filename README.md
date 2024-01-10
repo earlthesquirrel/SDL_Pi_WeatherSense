@@ -10,7 +10,7 @@ Program monitors the SwitchDoc Labs SDR on Pi for all WeatherSense instruments a
 
 And publishes to MQTT topic "weathersense/#"
 
-
+Version V021 January 8, 2024 - Code cleanup.  Removing Skycam, as we will never have this.
 Version V018 February 2,2022 - Debug command removed<BR>
 Version V017 December 10,2022 - WeatherRack3 Added<BR>
 Version V016 April 30,2022 - local updateWeb Logic Added<BR>
