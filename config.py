@@ -29,8 +29,8 @@ SkyCamRotationArray["26FD"] =270
 
 enable_MySQL_Logging = True
 MySQL_Host = "localhost"
-MySQL_User = "root"
-MySQL_Password = "password"
+MySQL_User = "pi"
+MySQL_Password = "raspberry"
 MySQL_Schema = "WeatherSenseWireless"
 
 # 0 is English, 1 is metric
@@ -39,7 +39,7 @@ English_Metric = 0
 # configuration for MQTT
 
 enable_MQTT = True
-MQTThost = "localhost"
+MQTThost = "172.16.0.4"
 MQTTport = 1883
 MQTTqos = 0
 
