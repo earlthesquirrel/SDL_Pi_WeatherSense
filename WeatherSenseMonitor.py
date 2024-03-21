@@ -1,14 +1,14 @@
 from __future__ import print_function
+import traceback
+import apscheduler.events
+from apscheduler.schedulers.background import BackgroundScheduler
+import time
+import MySQLdb as mdb
+import wirelessSensors
 # import state
 import sys
 # from datetime import datetime
 SOFTWAREVERSION = "V021"
-import wirelessSensors
-import MySQLdb as mdb
-
-import time
-from apscheduler.schedulers.background import BackgroundScheduler
-import apscheduler.events
 
 
 try:
@@ -16,52 +16,49 @@ try:
 except ImportError:
     import config
 
-import traceback
-
 
 # WeatherSense SQL Database
 try:
 
-        con = mdb.connect(
-          "localhost",
-          "root",
-          config.MySQL_Password,
-          "WeatherSenseWireless"
-          )
+    con = mdb.connect(
+        "localhost",
+        "root",
+        config.MySQL_Password,
+        "WeatherSenseWireless"
+    )
 
-except:
-        #print(traceback.format_exc())
-        print("--------")
-        print("MySQL Database WeatherSenseWireless Not Installed.")
-        print("Run this command:")
-        print("sudo mysql -u root -p < WeatherSenseWireless.sql")
-        print("WeatherSenseMonitor Stopped")
-        print("--------")
-        sys.exit("WeatherSenseMonitor Requirements Error Exit")
+except BaseException:
+    # print(traceback.format_exc())
+    print("--------")
+    print("MySQL Database WeatherSenseWireless Not Installed.")
+    print("Run this command:")
+    print("sudo mysql -u root -p < WeatherSenseWireless.sql")
+    print("WeatherSenseMonitor Stopped")
+    print("--------")
+    sys.exit("WeatherSenseMonitor Requirements Error Exit")
 
 # Check for updates having been applied
 try:
 
-        con = mdb.connect(
-          "localhost",
-          "root",
-          config.MySQL_Password,
-          "WeatherSenseWireless"
-          )
-        cur = con.cursor()
-        query = "SELECT * FROM RAD433MHZ"
-        cur.execute(query)
+    con = mdb.connect(
+        "localhost",
+        "root",
+        config.MySQL_Password,
+        "WeatherSenseWireless"
+    )
+    cur = con.cursor()
+    query = "SELECT * FROM RAD433MHZ"
+    cur.execute(query)
 
-except:
-        #print(traceback.format_exc())
-        print("--------")
-        print("MySQL Database WeatherSenseWireless Updates Not Installed.")
-        print("Run this command:")
-        print("sudo mysql -u root -p WeatherSenseWireless < updateWeatherSenseWireless.sql")
-        print("WeatherSenseMonitor Stopped")
-        print("--------")
-        sys.exit("WeatherSenseMonitor Requirements Error Exit")
-
+except BaseException:
+    # print(traceback.format_exc())
+    print("--------")
+    print("MySQL Database WeatherSenseWireless Updates Not Installed.")
+    print("Run this command:")
+    print("sudo mysql -u root -p WeatherSenseWireless < updateWeatherSenseWireless.sql")
+    print("WeatherSenseMonitor Stopped")
+    print("--------")
+    sys.exit("WeatherSenseMonitor Requirements Error Exit")
 
 
 print("-----------------")
@@ -102,10 +99,8 @@ scheduler.print_jobs()
 print("-----------------")
 
 
-
 # Main Loop
 
 while True:
 
     time.sleep(1.0)
-
