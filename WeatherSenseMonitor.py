@@ -5,9 +5,10 @@ from apscheduler.schedulers.background import BackgroundScheduler
 import time
 import MySQLdb as mdb
 import wirelessSensors
-# import state
 import sys
-# from datetime import datetime
+from datetime import datetime
+import pytz
+
 SOFTWAREVERSION = "V021"
 
 
@@ -104,3 +105,9 @@ print("-----------------")
 while True:
 
     time.sleep(1.0)
+    newYorkTz = pytz.timezone("America/New_York") 
+    easternTime = datetime.now(newYorkTz)
+    currentTime = easternTime.strftime("%H:%M")
+
+    if (currentTime == "23:58" or currentTime == "23:59") :
+       sys.exit("Daily Restart")
