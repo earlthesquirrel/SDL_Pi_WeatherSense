@@ -1,0 +1,82 @@
+   rm -rf Bookshelf/ Desktop/ Documents/ Downloads/ Music/ Pictures/ Public/ Templates/ Videos/
+   sudo apt-get update
+   sudo apt-get upgrade
+   sudo apt-get install cmake
+
+   sudo apt-get install libtool libusb-1.0-0-dev librtlsdr-dev rtl-sdr build-essential autoconf cmake pkg-config
+# Changed 1/24 to: can remove cmake (installed earlier)
+# sudo apt-get install libtool libusb-1.0-0-dev librtlsdr-dev rtl-sdr build-essential autoconf pkg-config
+
+   sudo apt-get install python3-dev libmysqlclient-dev
+# Changed 1/24 to: sudo apt-get install python3-dev libmariadb-dev-compat libmariadb-dev (packages changed)
+
+   sudo apt-get install mariadb-server
+   sudo mysql_secure_installation
+   sudo pip3 install mysql-connector-python
+   sudo pip3 install mysqlclient
+
+   sudo pip install future
+ # Changed 1/24 to: sudo pip3 install future
+
+   sudo pip3 install SafecastPy
+
+   sudo pip install paho-mqtt
+# Changed 1/24 to: sudo pip3 install paho-mqtt
+
+   sudo pip install python-aqi
+# Changed 1/24 to: sudo pip3 install python-aqi
+
+   sudo pip install APScheduler
+# Changed 1/24 to: sudo pip3 install APScheduler
+
+   sudo pip install ffmpeg
+# Changed 1/24 to: sudo pip3 install ffmpeg
+
+   git clone https://github.com/switchdoclabs/rtl_433.git
+   cd rtl_433/
+   mkdir build
+   cd build
+   cmake ..
+   make
+   sudo make install
+   cd
+   git clone https://github.com/switchdoclabs/SDL_Pi_WeatherSense.git
+   cd SDL_Pi_WeatherSense/
+
+	Create Database in mysql called "WeatherSenseWireless" -- See below
+  	Set MQTT Server info in config.py
+	# Changed 1/24 : Set user to pi and password to raspberry for SQL (to match what added below)
+
+# Changed 1/24 -- sudo mysql -u root -p (to connect)
+# Then CREATE DATABASE WeatherSenseWireless;
+# Then USE WeatherSenseWireless;
+# Then exit
+
+   sudo mysql -u root -p WeatherSenseWireless < WeatherSenseWireless.sql
+   mysql -u pi -p WeatherSenseWireless (then "show tables" to confirm installed)
+   sudo python3 WeatherSenseMonitor.py
+
+FOR DASH App
+sudo apt-get install libatlas-base-dev
+
+Add:
+blacklist rtl2832
+blacklist rtl2830
+
+To /etc/modprobe.d/no-rtl.conf
+
+
+
+TO CREATE DB
+
+# Still need to do this as of 1/24
+pi@sdlpi:~/SDL_Pi_WeatherSense $ sudo mysql -u root
+MariaDB [(none)]> GRANT ALL PRIVILEGES ON *.* to 'pi'@'localhost' IDENTIFIED BY 'raspberry';
+MariaDB [(none)]> \q
+
+# Old as of 1/24
+pi@sdlpi:~/SDL_Pi_WeatherSense $ sudo mysql -u pi -p
+MariaDB [(none)]> CREATE DATABASE WeatherSenseWireless;
+MariaDB [(none)]> \q
+
+mysql -u pi -p WeatherSenseWireless (should let you in after that)
